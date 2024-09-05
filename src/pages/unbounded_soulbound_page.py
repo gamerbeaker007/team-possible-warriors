@@ -25,7 +25,8 @@ def unbounded_soulbound_page(df):
 
     df = df.drop('Gold', axis=1)
 
-    # Display the dataframe as HTML with images
+    total_unbound = df['Number of Unbound Cards'].sum()
+    st.subheader(f"Total Unbounded Cards: {total_unbound}")
     st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 
