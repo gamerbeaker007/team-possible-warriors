@@ -50,23 +50,6 @@ def card_distribution_page(df):
     add_rarity_distribution_graph(grouped_gold_df, "Total Distribution by Edition and Rarity (Gold Foil)")
     add_rarity_burned_graph(grouped_gold_df, "Total Burned by Edition and Rarity (Gold Foil)")
 
-    # for rarity in rarity_order:
-    #     st.subheader(f"{rarity} Distribution")
-    #     st.plotly_chart(go.Figure(
-    #         data=[
-    #             go.Bar(
-    #                 x=grouped_non_gold_df[grouped_non_gold_df['rarity_name'] == rarity]['edition'],
-    #                 y=grouped_non_gold_df[grouped_non_gold_df['rarity_name'] == rarity]['num_cards'],
-    #                 name=f"{rarity} Distribution"
-    #             )
-    #         ],
-    #         layout=go.Layout(
-    #             title=f"{rarity} Distribution",
-    #             xaxis={'title': 'Edition'},
-    #             yaxis={'title': 'Number of Cards'}
-    #         )
-    #     ))
-
 
 def add_total_distribution_graph(df):
     # Plot the total distribution chart

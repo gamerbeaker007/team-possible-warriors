@@ -18,7 +18,7 @@ http = requests.Session()
 http.mount('https://', adapter)
 
 
-@st.cache_data
+@st.cache_data(ttl="1h")
 def get_card_details():
     address = base_url + 'cards/get_details'
     return pd.DataFrame(http.get(address).json()).set_index('id')
