@@ -34,7 +34,7 @@ def get_combined_df(df):
     return combined_df
 
 
-def card_distribution_page(df):
+def get_page(df):
     st.title("Distribution and Burned Totals by Edition and Rarity")
     combined_df = get_combined_df(df)
     add_total_distribution_graph(combined_df)

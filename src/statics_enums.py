@@ -16,6 +16,21 @@ edition_mapping = {
     13: 'Soulbound Rebellion'
 }
 
+edition_img_mapping = {
+    0: 'alpha',
+    1: 'beta',
+    2: 'promo',
+    3: 'reward',
+    4: 'untamed',
+    5: 'dice',
+    6: 'gladius',
+    7: 'chaos',
+    8: 'rift',
+    10: 'soulbound',
+    12: 'rebellion',
+    13: 'soulboundrb'
+}
+
 rarity_mapping = {
     1: 'Common',
     2: 'Rare',

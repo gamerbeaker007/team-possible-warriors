@@ -1,10 +1,14 @@
 [[pages]]
-path = 'src/pages/card_distribution_page.py'
+path = 'src/pages/card_distribution.py'
 name = 'Card Distribution'
 icon = ':bar_chart:'
 
 [[pages]]
-path = 'src/pages/unbounded_soulbound_page.py'
-name = 'Unbounded Soulbound'
+path = 'src/pages/chaos_soulbound.py'
+name = 'Chaos Legion Soulbound'
 icon = ':bar_chart:'
-url_path = 'unbounded' # You can override the default url path for a page
+
+[[pages]]
+path = 'src/pages/rebellion_soulbound.py'
+name = 'Rebellion Soulbound'
+icon = ':bar_chart:'
