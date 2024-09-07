@@ -2,10 +2,19 @@ import streamlit as st
 
 
 def add_totals_header(df):
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        total = df['Number of Cards'].sum()
-        st.subheader(f"Total Cards: {total:,.0f}")
+        total = df['num_cards'].sum()
+        st.markdown("""
+        ### Total Cards:
+        """ + f"{total:,.0f}")
     with col2:
-        total_unbound = df['Number of Unbound Cards'].sum()
-        st.subheader(f"Total Unbounded Cards: {total_unbound:,.0f}")
+        total_burned = df['num_burned'].sum()
+        st.markdown("""
+        ### Total Burned Cards:
+        """ + f"{total_burned:,.0f}")
+    with col3:
+        total_unbound = df['unbound_cards'].sum()
+        st.markdown("""
+        ### Total Unbounded Cards:
+        """ + f"{total_unbound:,.0f}")

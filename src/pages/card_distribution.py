@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import streamlit as st
 
+from src.components import graph
 from src.statics_enums import edition_order, rarity_colors, rarity_order
 
 group_columns = ['edition', 'edition_name', 'rarity', 'rarity_name']
@@ -37,21 +38,21 @@ def get_combined_df(df):
 def get_page(df):
     st.title("Distribution and Burned Totals by Edition and Rarity")
     combined_df = get_combined_df(df)
-    add_total_distribution_graph(combined_df)
+    _add_total_distribution_graph(combined_df)
 
     # Show regular foil charts
     st.header("Regular Foil Cards Distribution")
     grouped_non_gold_df = get_grouped_non_gold_df(df)
-    add_rarity_distribution_graph(grouped_non_gold_df, "Total Distribution by Edition and Rarity (Regular Foil)")
-    add_rarity_burned_graph(grouped_non_gold_df, "Total Burned by Edition and Rarity (Regular Foil)")
+    graph.add_rarity_distribution_graph(grouped_non_gold_df, "Total Distribution by Edition and Rarity (Regular Foil)")
+    _add_rarity_burned_graph(grouped_non_gold_df, "Total Burned by Edition and Rarity (Regular Foil)")
 
     st.header("Gold Foil Cards Distribution")
     grouped_gold_df = get_grouped_gold_df(df)
-    add_rarity_distribution_graph(grouped_gold_df, "Total Distribution by Edition and Rarity (Gold Foil)")
-    add_rarity_burned_graph(grouped_gold_df, "Total Burned by Edition and Rarity (Gold Foil)")
+    graph.add_rarity_distribution_graph(grouped_gold_df, "Total Distribution by Edition and Rarity (Gold Foil)")
+    _add_rarity_burned_graph(grouped_gold_df, "Total Burned by Edition and Rarity (Gold Foil)")
 
 
-def add_total_distribution_graph(df):
+def _add_total_distribution_graph(df):
     # Plot the total distribution chart
     st.plotly_chart(go.Figure(
         data=[
@@ -79,27 +80,7 @@ def add_total_distribution_graph(df):
     ))
 
 
-def add_rarity_distribution_graph(df, title):
-    st.plotly_chart(go.Figure(
-        data=[
-            go.Bar(
-                x=df[df['rarity_name'] == rarity]['edition_name'],
-                y=df[df['rarity_name'] == rarity]['num_cards'],
-                name=rarity,
-                marker=dict(color=rarity_colors[rarity])
-            )
-            for rarity in rarity_order
-        ],
-        layout=go.Layout(
-            title=title,
-            xaxis={'title': 'Edition'},
-            yaxis={'title': 'Number of Cards'}
-
-        )
-    ))
-
-
-def add_rarity_burned_graph(df, title):
+def _add_rarity_burned_graph(df, title):
     # Plot the total distribution chart
     st.plotly_chart(go.Figure(
         data=[

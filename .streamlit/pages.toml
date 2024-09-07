@@ -4,11 +4,6 @@ name = 'Card Distribution'
 icon = ':bar_chart:'
 
 [[pages]]
-path = 'src/pages/chaos_soulbound.py'
-name = 'Chaos Legion Soulbound'
-icon = ':bar_chart:'
-
-[[pages]]
-path = 'src/pages/rebellion_soulbound.py'
-name = 'Rebellion Soulbound'
+path = 'src/pages/detailed_distribution.py'
+name = 'Detailed Distribution'
 icon = ':bar_chart:'
