@@ -22,14 +22,14 @@ def get_page(df):
         'num_burned': 'Number of Burned Cards',
         'unbound_cards': 'Number of Unbound Cards'
     }
-    renamed_columns_df = filtered_df.rename(columns=columns)
-    renamed_columns_df = renamed_columns_df[list(columns.values())].copy()
-    renamed_columns_df = sort_panel.sort_options(renamed_columns_df, list(columns.values()))
 
     graph.add_rarity_distribution_graph(filtered_df, "Total distribution by rarity", True)
 
     total_card_header.add_totals_header(filtered_df)
 
+    renamed_columns_df = filtered_df.rename(columns=columns)
+    renamed_columns_df = renamed_columns_df[list(columns.values())].copy()
+    renamed_columns_df = sort_panel.sort_options(renamed_columns_df, list(columns.values()))
     st.write(renamed_columns_df.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 
