@@ -1,7 +1,8 @@
-requests==2.32.3
-urllib3==2.2.2
-pandas==2.2.2
-plotly==5.24.0
-numpy==2.1.1
-streamlit==1.38.0
-st-pages==1.0.1
+#all these dependencies are already in the default of stremlit
+#requests==2.32.3
+#urllib3==2.2.2
+#pandas==2.2.2
+#plotly==5.24.0
+#numpy==2.1.1
+#streamlit==1.38.0
+#st-pages==1.0.1
