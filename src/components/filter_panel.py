@@ -37,8 +37,9 @@ def filter_options(df):
             df = df[df['name'].isin(name_filter)]
         if rarity_filter:
             df = df[df['rarity_name'].isin(rarity_filter)]
-        if gold_filter:
-            gold = gold_filter == 'Gold Foil'
-            df = df[df['gold'].isin(gold)]
+        # If filter is not set or both are on do not filter
+        if gold_filter and not ('Gold Foil' in gold_filter and 'Regular Foil' in gold_filter):
+            gold = 'Gold Foil' in gold_filter
+            df = df[df['gold'] == gold]
 
     return df
