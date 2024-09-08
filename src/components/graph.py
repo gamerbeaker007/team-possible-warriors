@@ -16,27 +16,37 @@ def add_rarity_distribution_graph(df, title, print_unbounded=False):
     # List to hold all bars
     bars = []
 
-    # Create bars for 'num_cards'
-    for rarity in rarity_order:
-        bars.append(
-            go.Bar(
-                x=df[df['rarity_name'] == rarity]['edition_name'],
-                y=df[df['rarity_name'] == rarity]['num_cards'],
-                name=f'{rarity} (Cards)',
-                marker=dict(color=rarity_colors[rarity])
-            )
-        )
-        if print_unbounded:
-            unbound_df = df[df['rarity_name'] == rarity]
-            if unbound_df['unbound_cards'].sum() > 0:  # Check if there are any unbound cards
-                bars.append(
-                    go.Bar(
-                        x=unbound_df['edition_name'],
-                        y=unbound_df['unbound_cards'],
-                        name=f'{rarity} (Unbound Cards)',
-                        marker=dict(color=rarity_colors[rarity], opacity=0.5)  # Different opacity for distinction
-                    )
+    for edition in df['edition_name'].unique():
+        edition_df = df[df['edition_name'] == edition]
+
+        for rarity in rarity_order:
+            rarity_df = edition_df[edition_df['rarity_name'] == rarity]
+
+            bars.append(
+                go.Bar(
+                    x=rarity_df['edition_name'],
+                    y=rarity_df['num_cards'],
+                    name=f'{rarity} (Cards)',
+                    marker=dict(color=rarity_colors[rarity]),
+                    legendgroup=rarity,
+                    showlegend=(edition == df['edition_name'].unique()[0]),
+                    xperiodalignment="middle"
                 )
+            )
+
+            if print_unbounded:
+                unbound_df = rarity_df[rarity_df['unbound_cards'] > 0]
+                if not unbound_df.empty:
+                    bars.append(
+                        go.Bar(
+                            x=unbound_df['edition_name'],
+                            y=unbound_df['unbound_cards'],
+                            name=f'{rarity} (Unbound Cards)',
+                            marker=dict(color=rarity_colors[rarity], opacity=0.5),  # Different opacity for distinction
+                            legendgroup=f'unbounded {rarity}',
+                            xperiodalignment="middle"
+                        )
+                    )
 
     # Plot the chart with both types of bars
     st.plotly_chart(go.Figure(
