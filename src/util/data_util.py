@@ -10,7 +10,7 @@ def preprocess_data(data):
     df = make_columns_as_int(df)
     df = add_rarity_names(df)
     df = add_edition_names(df)
-    df = add_bxc(df)
+    df = add_bcx(df)
     return df
 
 
@@ -44,7 +44,7 @@ def add_edition_names(df):
     return df
 
 
-def add_bxc(df):
+def add_bcx(df):
     settings = spl.get_settings()
     df['bcx'] = df.apply(lambda r: card_util.determine(r, settings, 'total_xp'), axis=1)
     df['burned_bcx'] = df.apply(lambda r: card_util.determine(r, settings, 'total_burned_xp'), axis=1)
