@@ -1,6 +1,8 @@
 import pandas as pd
 
+from src.api import spl
 from src.statics_enums import rarity_mapping, edition_mapping
+from src.util import card_util
 
 
 def preprocess_data(data):
@@ -8,6 +10,7 @@ def preprocess_data(data):
     df = make_columns_as_int(df)
     df = add_rarity_names(df)
     df = add_edition_names(df)
+    df = add_bxc(df)
     return df
 
 
@@ -38,4 +41,11 @@ def add_rarity_names(df):
 
 def add_edition_names(df):
     df['edition_name'] = df['edition'].map(edition_mapping)
+    return df
+
+
+def add_bxc(df):
+    settings = spl.get_settings()
+    df['bcx'] = df.apply(lambda r: card_util.determine(r, settings, 'total_xp'), axis=1)
+    df['burned_bcx'] = df.apply(lambda r: card_util.determine(r, settings, 'total_burned_xp'), axis=1)
     return df

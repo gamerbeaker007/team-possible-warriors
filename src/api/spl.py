@@ -22,3 +22,9 @@ http.mount('https://', adapter)
 def get_card_details():
     address = base_url + 'cards/get_details'
     return pd.DataFrame(http.get(address).json()).set_index('id')
+
+
+@st.cache_data(ttl="1h")
+def get_settings():
+    address = base_url + 'settings'
+    return http.get(address).json()

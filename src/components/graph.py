@@ -26,7 +26,7 @@ def add_rarity_distribution_graph(df, title):
                 go.Bar(
                     x=rarity_df['edition_name'],
                     y=rarity_df['num_cards'],
-                    name=f'{rarity} (Cards)',
+                    name=f'{rarity}',
                     marker=dict(color=rarity_colors[rarity]),
                     legendgroup=rarity,
                     showlegend=(edition == df['edition_name'].unique()[0]),
@@ -40,7 +40,7 @@ def add_rarity_distribution_graph(df, title):
                     go.Bar(
                         x=unbound_df['edition_name'],
                         y=unbound_df['unbound_cards'],
-                        name=f'{rarity} (Unbound Cards)',
+                        name=f'{rarity} (Unbound)',
                         marker=dict(color=rarity_colors[rarity], opacity=0.5),  # Different opacity for distinction
                         legendgroup=f'unbounded {rarity}',
                         xperiodalignment="middle"

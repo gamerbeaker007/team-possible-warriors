@@ -63,7 +63,7 @@ def _add_rarity_distribution_graph(df, title):
             go.Bar(
                 x=df[df['rarity_name'] == rarity]['edition_name'],
                 y=df[df['rarity_name'] == rarity]['num_cards'],
-                name=f'{rarity} (Cards)',
+                name=f'{rarity}',
                 marker=dict(color=rarity_colors[rarity])
             )
         )

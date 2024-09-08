@@ -17,10 +17,12 @@ def get_page(df):
         'name': 'Name',
         'rarity_name': 'Rarity',
         'edition_name': 'Edition',
-        'percent_unbound': 'Percent Unbound',
+        'bcx': 'Number of BCX',
+        'burned_bcx': 'Number of Burned BCX',
         'num_cards': 'Number of Cards',
         'num_burned': 'Number of Burned Cards',
-        'unbound_cards': 'Number of Unbound Cards'
+        'unbound_cards': 'Number of Unbound Cards',
+        'percent_unbound': 'Percent Unbound',
     }
 
     graph.add_rarity_distribution_graph(filtered_df, "Total distribution by rarity")
