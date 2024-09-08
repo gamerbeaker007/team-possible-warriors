@@ -13,7 +13,7 @@ def filter_options(df):
     df = df[df['edition_name'].isin(edition)]
 
     # Create filter options for each column
-    with st.expander("Filtering1111"):
+    with st.expander("Filtering"):
 
         # First row: "Name" filter
         name_filter = st.multiselect(
