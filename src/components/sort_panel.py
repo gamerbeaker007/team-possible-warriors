@@ -4,7 +4,7 @@ import streamlit as st
 def sort_options(df, columns):
     columns.remove('Image URL')
 
-    with st.expander('Sorting', expanded=True):  # Collapsible panel with the title 'Sorting'
+    with st.expander('Sorting'):  # Collapsible panel with the title 'Sorting'
         col1, col2 = st.columns([2, 1])  # Two columns, adjust the width ratio as needed
 
         with col1:

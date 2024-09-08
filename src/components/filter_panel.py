@@ -13,7 +13,7 @@ def filter_options(df):
     df = df[df['edition_name'].isin(edition)]
 
     # Create filter options for each column
-    with st.expander("Filtering", expanded=True):
+    with st.expander("Filtering1111"):
 
         # First row: "Name" filter
         name_filter = st.multiselect(
@@ -29,8 +29,8 @@ def filter_options(df):
             )
         with col2:
             gold_filter = st.multiselect(
-                "Gold Foil",
-                options=df['gold'].unique()
+                "Foil",
+                options=['Regular Foil', 'Gold Foil']
             )
 
         if name_filter:
@@ -38,6 +38,7 @@ def filter_options(df):
         if rarity_filter:
             df = df[df['rarity_name'].isin(rarity_filter)]
         if gold_filter:
-            df = df[df['gold'].isin(gold_filter)]
+            gold = gold_filter == 'Gold Foil'
+            df = df[df['gold'].isin(gold)]
 
     return df

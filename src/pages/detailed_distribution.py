@@ -26,7 +26,7 @@ def get_page(df):
     renamed_columns_df = renamed_columns_df[list(columns.values())].copy()
     renamed_columns_df = sort_panel.sort_options(renamed_columns_df, list(columns.values()))
 
-    graph.add_rarity_distribution_graph(filtered_df, "Total distribution by rarity")
+    graph.add_rarity_distribution_graph(filtered_df, "Total distribution by rarity", True)
 
     total_card_header.add_totals_header(filtered_df)
 
@@ -39,5 +39,10 @@ def _calculated_percent_unbound(df):
 
 
 def _add_image_url(df):
-    df['image_url'] = df.apply(image_util.generate_image_url, axis=1)
+    df['image_url'] = df.apply(lambda row: image_util.generate_image_url(
+        row['name'],
+        row['rarity_name'],
+        row['edition'],
+        row['gold']
+    ), axis=1)
     return df
