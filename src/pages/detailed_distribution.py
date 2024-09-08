@@ -23,7 +23,7 @@ def get_page(df):
         'unbound_cards': 'Number of Unbound Cards'
     }
 
-    graph.add_rarity_distribution_graph(filtered_df, "Total distribution by rarity", True)
+    graph.add_rarity_distribution_graph(filtered_df, "Total distribution by rarity")
 
     total_card_header.add_totals_header(filtered_df)
 

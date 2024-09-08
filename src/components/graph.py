@@ -6,7 +6,7 @@ from src.statics_enums import rarity_colors, rarity_order
 group_columns = ['edition', 'edition_name', 'rarity', 'rarity_name']
 
 
-def add_rarity_distribution_graph(df, title, print_unbounded=False):
+def add_rarity_distribution_graph(df, title):
     df = df.groupby(group_columns).agg({
         'num_cards': 'sum',
         'num_burned': 'sum',
@@ -34,19 +34,18 @@ def add_rarity_distribution_graph(df, title, print_unbounded=False):
                 )
             )
 
-            if print_unbounded:
-                unbound_df = rarity_df[rarity_df['unbound_cards'] > 0]
-                if not unbound_df.empty:
-                    bars.append(
-                        go.Bar(
-                            x=unbound_df['edition_name'],
-                            y=unbound_df['unbound_cards'],
-                            name=f'{rarity} (Unbound Cards)',
-                            marker=dict(color=rarity_colors[rarity], opacity=0.5),  # Different opacity for distinction
-                            legendgroup=f'unbounded {rarity}',
-                            xperiodalignment="middle"
-                        )
+            unbound_df = rarity_df[rarity_df['unbound_cards'] > 0]
+            if not unbound_df.empty:
+                bars.append(
+                    go.Bar(
+                        x=unbound_df['edition_name'],
+                        y=unbound_df['unbound_cards'],
+                        name=f'{rarity} (Unbound Cards)',
+                        marker=dict(color=rarity_colors[rarity], opacity=0.5),  # Different opacity for distinction
+                        legendgroup=f'unbounded {rarity}',
+                        xperiodalignment="middle"
                     )
+                )
 
     # Plot the chart with both types of bars
     st.plotly_chart(go.Figure(
