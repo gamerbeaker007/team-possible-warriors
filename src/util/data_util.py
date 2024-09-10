@@ -21,6 +21,7 @@ def get_all_distributions_df(df):
         for dist in row['distribution']:
             dist['name'] = row['name']
             dist['rarity'] = row['rarity']
+            dist['tier'] = row['tier']
             all_distributions.append(dist)
 
     df = pd.DataFrame(all_distributions)
