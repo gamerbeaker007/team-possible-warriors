@@ -5,7 +5,7 @@ from src.util import image_util
 
 
 def get_page(df):
-    st.title("Detailed Card Distributed ")
+    st.title("Detailed Cards Distributed ")
 
     df = _calculated_percent_unbound(df)
     df = _add_image_url(df)

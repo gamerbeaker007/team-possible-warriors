@@ -3,11 +3,11 @@ import streamlit as st
 from src.statics_enums import edition_mapping
 
 
-def filter_options(df):
+def filter_options(df, default=edition_mapping.get(10)):
     edition = st.multiselect(
         "Edition",
         options=list(edition_mapping.values()),
-        default=[edition_mapping.get(10)]
+        default=[default]
     )
 
     df = df[df['edition_name'].isin(edition)]

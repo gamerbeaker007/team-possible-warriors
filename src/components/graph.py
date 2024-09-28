@@ -56,3 +56,33 @@ def add_rarity_distribution_graph(df, title):
             yaxis={'title': 'Number of Cards'},
         )
     ))
+
+
+def add_burned_rarity_distribution_graph(df, title):
+    df = df.groupby(group_columns).agg({
+        'num_cards': 'sum',
+        'num_burned': 'sum',
+        'burned_bcx': 'sum',
+    }).reset_index()
+
+    bars = []
+    # Create bars for 'num_cards'
+    for rarity in rarity_order:
+        bars.append(
+            go.Bar(
+                x=df[df['rarity_name'] == rarity]['edition_name'],
+                y=df[df['rarity_name'] == rarity]['burned_bcx'],
+                name=f'{rarity}',
+                marker=dict(color=rarity_colors[rarity])
+            )
+        )
+
+    # Plot the chart with both types of bars
+    st.plotly_chart(go.Figure(
+        data=bars,
+        layout=go.Layout(
+            title=title,
+            xaxis={'title': 'Edition'},
+            yaxis={'title': 'Number burned BCX'},
+        )
+    ))
