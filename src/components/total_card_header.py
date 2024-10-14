@@ -18,3 +18,17 @@ def add_totals_header(df):
         st.markdown("""
         ### Total Unbounded Cards:
         """ + f"{total_unbound:,.0f}")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        total = df['bcx'].sum()
+        st.markdown("""
+        ### Total BCX (circulating):
+        """ + f"{total:,.0f}")
+    with col2:
+        total_burned = df['burned_bcx'].sum()
+        st.markdown("""
+        ### Total Burned BCX:
+        """ + f"{total_burned:,.0f}")
+    with col3:
+        st.markdown("")
