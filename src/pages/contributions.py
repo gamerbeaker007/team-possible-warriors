@@ -16,7 +16,16 @@ def get_page():
         st.cache_data.clear()
 
     with st.expander('How to setup your reward delegations'):
-        st.write('go to: https://next.splinterlands.com/sps/reward-delegations')
+        st.write("""
+        To set up your reward delegations, follow these steps:
+
+        1. **Visit the Reward Delegations Page**: Go to the [Splinterlands Reward Delegations page](https://next.splinterlands.com/sps/reward-delegations).
+        2. **Log In to Your Account**: Ensure you are logged into your Splinterlands account, so you can access the settings.
+        3. **Select the Desired Rewards to Delegate**: Choose Brawl rewards and set it to delegate 25% to: """ + fund_account_name + """
+        4. **Confirm and Save Changes**: Once you’ve made your selections, review them to confirm accuracy, then save the changes to apply your reward delegations.
+        
+        Use the image below as a reference for navigating the reward delegations page and configuring your settings.
+        """)
         st.image(reward_delegations_image)
 
     guild_id = spl.get_guild_id(guild_name)
