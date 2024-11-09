@@ -12,4 +12,4 @@ def get_page():
         df = spl.get_balances_df(fund_account_name)
         pivot_df = df.pivot_table(index='player', columns='token', values='balance', aggfunc='first').reset_index()
         pivot_df = pivot_df.rename(columns={"SPSP": "Staked SPS"})
-        st.dataframe(pivot_df.set_index(pivot_df.columns[0]))
+        st.dataframe(pivot_df.set_index(pivot_df.columns[0]), use_container_width=True)

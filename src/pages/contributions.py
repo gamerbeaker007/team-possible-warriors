@@ -42,7 +42,7 @@ def get_page():
         df = spl.get_guild_members_df(guild_id)
         df = add_percent_column(df, fund_account_name)
 
-    num_columns = 4
+    num_columns = 3
     rows_per_column = (len(df) + num_columns - 1) // num_columns  # Calculate rows per column, rounded up
 
     # Create 4 columns in Streamlit
@@ -52,7 +52,7 @@ def get_page():
     for i, col in enumerate(columns):
         start_idx = i * rows_per_column
         end_idx = start_idx + rows_per_column
-        col.dataframe(df[['player', 'percent', 'valid']].iloc[start_idx:end_idx])
+        col.dataframe(df[['player', 'percent', 'valid']].iloc[start_idx:end_idx], use_container_width=True)
 
 
 def add_percent_column(df, requested_delegation_account):
