@@ -1,15 +1,4 @@
 [[pages]]
-path = 'src/pages/card_distribution.py'
-name = 'Card Distribution'
-icon = ':bar_chart:'
-
-[[pages]]
-path = 'src/pages/detailed_distribution.py'
-name = 'Detailed Distribution'
-icon = ':bar_chart:'
-
-
-[[pages]]
-path = 'src/pages/burned_distribution.py'
-name = 'Burned BCX'
+path = 'src/pages/contributions.py'
+name = 'Contribution'
 icon = ':bar_chart:'
