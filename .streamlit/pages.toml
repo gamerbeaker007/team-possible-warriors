@@ -2,3 +2,8 @@
 path = 'src/pages/contributions.py'
 name = 'Contributions'
 icon = '🪙'
+
+[[pages]]
+path = 'src/pages/warriorsfund.py'
+name = 'Warriorsfund'
+icon = '💸'

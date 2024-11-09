@@ -51,3 +51,10 @@ def get_contributions(username):
     url = base_url + '/players/reward_delegations'
     response = requests.get(url, params=params)
     return response.json()
+
+
+def get_balances_df(username):
+    params = {'players': username}
+    url = base_url + '/players/balances'
+    response = requests.get(url, params=params)
+    return pd.DataFrame(response.json())
