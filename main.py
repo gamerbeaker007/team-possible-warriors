@@ -12,7 +12,7 @@ pg = st.navigation(nav)
 add_page_title(pg)
 
 # Dynamically call the page-specific function based on the selected page
-if pg.title == "Contribution":
+if pg.title == "Contributions":
     contributions.get_page()
 
 pg.run()

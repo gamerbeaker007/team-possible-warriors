@@ -1,4 +1,4 @@
 [[pages]]
 path = 'src/pages/contributions.py'
-name = 'Contribution'
+name = 'Contributions'
 icon = '🪙'
