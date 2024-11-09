@@ -1,3 +1,5 @@
+import os.path
+
 import streamlit as st
 
 from src.api import spl
@@ -5,12 +7,17 @@ from src.api import spl
 guild_name = 'Team Possible Warriors'
 fund_account_name = 'warriorsfund'
 reward_percentage = 25.0
+reward_delegations_image = os.path.join('assets', 'reward-delegations.png')
 
 
 def get_page():
     st.title('Team possible warriors - Contributions ')
     if st.button('Refresh Data'):
         st.cache_data.clear()
+
+    with st.expander('How to setup your reward delegations'):
+        st.write('go to: https://next.splinterlands.com/sps/reward-delegations')
+        st.image(reward_delegations_image)
 
     guild_id = spl.get_guild_id(guild_name)
     st.markdown(f"""
