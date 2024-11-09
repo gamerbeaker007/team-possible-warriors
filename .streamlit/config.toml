@@ -1,6 +1,5 @@
-# this is needed for local development with docker
 [server]
-# you will need this for local development:
+folderWatchBlacklist = ['.github', 'venv', '.idea']  # Watches all folders
 runOnSave = true
 headless = true
 fileWatcherType = "poll"

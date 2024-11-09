@@ -1,4 +1,4 @@
 [[pages]]
 path = 'src/pages/contributions.py'
 name = 'Contribution'
-icon = ':bar_chart:'
+icon = '🪙'

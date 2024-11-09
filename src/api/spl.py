@@ -37,6 +37,7 @@ def get_guild_id(name):
         return guilds[0].get('id')
 
 
+@st.cache_data(ttl='24h')
 def get_guild_members_df(guild_id):
     params = {'guild_id': guild_id}
     address = base_url + 'guilds/members'
@@ -44,6 +45,7 @@ def get_guild_members_df(guild_id):
     return df.loc[df.status == 'active']
 
 
+@st.cache_data(ttl='1h')
 def get_contributions(username):
     params = {'username': username}
     url = base_url + '/players/reward_delegations'
