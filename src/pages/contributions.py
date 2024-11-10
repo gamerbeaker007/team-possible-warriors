@@ -1,5 +1,6 @@
 import os.path
 
+import pandas as pd
 import streamlit as st
 
 from src.api import spl
@@ -41,8 +42,12 @@ def get_page():
     with st.spinner('Loading data...'):
         df = spl.get_guild_members_df(guild_id)
         df = add_percent_column(df, fund_account_name)
+        df['join_date'] = pd.to_datetime(df['join_date'])
+        df = df.sort_values(by='join_date').reset_index(drop=True)
+        df['join_date'] = df['join_date'].dt.strftime('%Y-%m-%d')
+        df['valid'] = df['valid'].apply(lambda x: "✅" if x else "❌")
 
-    num_columns = 3
+    num_columns = 2
     rows_per_column = (len(df) + num_columns - 1) // num_columns  # Calculate rows per column, rounded up
 
     # Create 4 columns in Streamlit
@@ -52,7 +57,11 @@ def get_page():
     for i, col in enumerate(columns):
         start_idx = i * rows_per_column
         end_idx = start_idx + rows_per_column
-        col.dataframe(df[['player', 'percent', 'valid']].iloc[start_idx:end_idx], use_container_width=True)
+        df = df.rename(columns={
+            'join_date': 'join date',
+        })
+
+        col.table(df[['join date', 'player', 'percent', 'valid']].iloc[start_idx:end_idx])
 
 
 def add_percent_column(df, requested_delegation_account):
