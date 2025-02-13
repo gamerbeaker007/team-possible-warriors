@@ -8,6 +8,7 @@ from urllib3 import Retry
 
 # Define URLs and retry strategy
 base_url = 'https://api2.splinterlands.com/'
+vapi_url = 'https://vapi.splinterlands.com/'
 
 retry_strategy = Retry(
     total=10,
@@ -58,3 +59,12 @@ def get_balances_df(username):
     url = base_url + '/players/balances'
     response = requests.get(url, params=params)
     return pd.DataFrame(response.json())
+
+
+def get_outgoing_delegations(username):
+    url = f'{vapi_url}delegation/outgoing/{username}'
+    response = requests.get(url)
+    if response:
+        return pd.DataFrame(response.json()['data'])
+    else:
+        return pd.DataFrame()
